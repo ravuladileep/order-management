@@ -1,0 +1,75 @@
+<div class="col-10  mx-auto my-auto d-block">
+  <div class="my-5">
+    <h3 class="text-center my-4">Order Details</h3>
+    <form [formGroup]="form">
+      <div class="mb-3">
+        <label for="customerName" class="form-label">Customer Name
+          <span class="text-danger">*</span>
+        </label>
+        <input type="text" formControlName="customerName" class="form-control" id="customerName"
+          [class.is-invalid]="f.customerName.touched && f.customerName.invalid" aria-describedby="emailHelp">
+        <div id="customerName" class="form-text text-danger" *ngIf="f.customerName.touched && f.customerName.invalid">
+          Please enter customer name
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="orderNumber" class="form-label">Order Number
+          <span class="text-danger">*</span>
+        </label>
+        <input type="number" formControlName="orderNumber"
+          [class.is-invalid]="f.orderNumber.touched && f.orderNumber.invalid" class="form-control" id="orderNumber">
+        <div id="orderNumber" class="form-text text-danger" *ngIf="f.orderNumber.touched && f.orderNumber.invalid">
+          Please enter order number
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="dueDate" class="form-label">Due Date
+          <span class="text-danger">*</span>
+        </label>
+        <input type="text" bsDatepicker readonly formControlName="dueDate"
+          [class.is-invalid]="f.dueDate.touched && f.dueDate.invalid" class="form-control bg-white" id="dueDate">
+        <div id="dueDate" class="form-text text-danger " *ngIf="f.dueDate.touched && f.dueDate.invalid">
+          Please select due date
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="phone" class="form-label">Phone
+          <span class="text-danger">*</span>
+        </label>
+        <input type="tel" formControlName="phone" minlength="10" maxlength="10"
+          [class.is-invalid]="f.phone.touched && f.phone.invalid" class="form-control" id="phone">
+        <div id="phone" class="form-text text-danger" *ngIf="f.phone?.errors?.required && f.phone.touched">
+          Please enter phone
+        </div>
+        <div id="phone" class="form-text text-danger"
+          *ngIf="(f.phone?.errors?.minlength || f.phone?.errors?.maxlength) && f.phone.touched">
+          Phone should be length 10
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="address" class="form-label">Address
+          <span class="text-danger">*</span>
+        </label>
+        <textarea type="text" formControlName="address" [class.is-invalid]="f.address.touched && f.address.invalid"
+          class="form-control" id="address"></textarea>
+        <div id="address" class="form-text text-danger" *ngIf="f.address.touched && f.address.invalid">
+          Please enter address
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="total" class="form-label">Total
+          <span class="text-danger">*</span>
+        </label>
+        <input type="number" formControlName="total" [class.is-invalid]="f.total.touched && f.total.invalid"
+          class="form-control" id="total">
+        <div id="total" class="form-text text-danger" *ngIf="f.total.touched && f.total.invalid">
+          Please enter total
+        </div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-secondary m-2" (click)="hideModal()">Cancel</button>
+        <button type="submit" (click)="onSubmit()" class="btn btn-primary" [disabled]="form.invalid">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

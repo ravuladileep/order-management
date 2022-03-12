@@ -1,0 +1,42 @@
+<div class="col-10 col-md-4 mx-auto my-auto d-block mt-5">
+  <div class="mt-5">
+    <h3 class="text-center my-5">Log-In</h3>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email
+          <span class="text-danger">*</span>
+        </label>
+        <input type="email" formControlName="email" class="form-control" id="exampleInputEmail1"
+          [class.is-invalid]="f.email.touched && f.email.invalid" aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text text-danger" *ngIf="f.email?.errors?.required && f.email?.touched">Please
+          enter email
+        </div>
+        <div id="emailHelp" class="form-text text-danger" *ngIf="f.email?.errors?.email && f.email.touched">Please enter
+          a
+          valid email
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password
+          <span class="text-danger">*</span>
+        </label>
+        <input type="password" formControlName="password" [class.is-invalid]="f.password.touched && f.password.invalid"
+          class="form-control" id="exampleInputPassword1">
+        <div id="passwordHelp" class="form-text text-danger"
+          *ngIf="f.password?.errors?.required && f.password?.touched">
+          Please
+          enter password
+        </div>
+        <div id="passwordHelp" class="form-text text-danger"
+          *ngIf="f.password?.errors?.minlength && f.password?.touched">
+          Password length should be at lease 6 character
+        </div>
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" formControlName="rememberMe" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Remember me</label>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Submit</button>
+    </form>
+  </div>
+</div>

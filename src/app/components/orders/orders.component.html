@@ -1,0 +1,63 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Order Management</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+      <ul class="navbar-nav ">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/orders" routerLinkActive="active" href="#">Orders</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/login" (click)="logOut()" href="#">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- orders section -->
+<section>
+  <div class="col-md-10 mx-auto d-block mt-5">
+    <div class="new-button my-3">
+      <button class="btn btn-primary" (click)="openModal()">Add New</button>
+    </div>
+    <div class="table-responsive">
+      <table class="table  table-striped table-hover ">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">Customer Name</th>
+            <th scope="col">Order Number</th>
+            <th scope="col">Due Date</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Address</th>
+            <th scope="col">Total</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="orderList?.length">
+          <tr *ngFor="let item of orderList">
+            <td>{{item?.id}}</td>
+            <td>{{item?.customerName}}</td>
+            <td>{{item?.orderNumber}}</td>
+            <td>{{item?.dueDate | date:'dd/MM/yyyy'}}</td>
+            <td>{{item?.phone}}</td>
+            <td>{{item?.address}}</td>
+            <td>{{item?.total}}</td>
+            <td>
+              <button class="btn btn-info m-2" (click)="openModal(item?.id)">Edit</button>
+              <button class="btn btn-danger m-2" (click)="deleteOrder(item?.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="!orderList.length" class="text-center my-5">
+        <h6>No orders placed yet. please add some.</h6>
+      </div>
+    </div>
+  </div>
+</section>
